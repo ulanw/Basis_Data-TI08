@@ -1,0 +1,249 @@
+Setting environment for using XAMPP for Windows.
+ASUS A1400@ULANW c:\xampp
+# dir
+ Volume in drive C is OS
+ Volume Serial Number is 182E-0F05
+
+ Directory of c:\xampp
+
+08/03/2024  15:43    <DIR>          .
+23/02/2024  09:07    <DIR>          anonymous
+23/02/2024  09:07    <DIR>          apache
+07/06/2013  18:15               436 apache_start.bat
+01/10/2019  14:13               190 apache_stop.bat
+05/04/2021  23:16            10.324 catalina_service.bat
+05/04/2021  23:17             3.766 catalina_start.bat
+05/04/2021  23:17             3.529 catalina_stop.bat
+23/02/2024  09:10    <DIR>          cgi-bin
+23/02/2024  09:07    <DIR>          contrib
+23/02/2024  09:07             2.731 ctlscript.bat
+23/02/2024  09:10    <DIR>          FileZillaFTP
+30/03/2013  19:29                78 filezilla_setup.bat
+07/06/2013  18:15               150 filezilla_start.bat
+07/06/2013  18:15               149 filezilla_stop.bat
+23/02/2024  09:36    <DIR>          htdocs
+23/02/2024  09:07    <DIR>          img
+23/02/2024  09:10    <DIR>          install
+15/06/2022  23:07               299 killprocess.bat
+23/02/2024  09:07    <DIR>          licenses
+23/02/2024  09:07    <DIR>          locale
+23/02/2024  09:07    <DIR>          mailoutput
+23/02/2024  09:07    <DIR>          mailtodisk
+23/02/2024  09:10    <DIR>          MercuryMail
+07/06/2013  18:15               136 mercury_start.bat
+07/06/2013  18:15                60 mercury_stop.bat
+15/03/2024  14:00    <DIR>          mysql
+03/06/2019  18:39               471 mysql_start.bat
+01/10/2019  14:13               270 mysql_stop.bat
+13/03/2017  18:04               824 passwords.txt
+23/02/2024  09:08    <DIR>          perl
+23/02/2024  09:10    <DIR>          php
+01/03/2024  13:45    <DIR>          phpMyAdmin
+23/02/2024  09:10               792 properties.ini
+19/11/2023  18:10             7.498 readme_de.txt
+19/11/2023  18:10             7.368 readme_en.txt
+23/02/2024  09:10    <DIR>          sendmail
+30/03/2013  19:29            60.928 service.exe
+30/03/2013  19:29             1.255 setup_xampp.bat
+23/02/2024  09:07    <DIR>          src
+29/11/2020  20:38             1.671 test_php.bat
+20/03/2024  11:35    <DIR>          tmp
+23/02/2024  09:07    <DIR>          tomcat
+23/02/2024  09:11           264.026 uninstall.dat
+23/02/2024  09:11         6.585.985 uninstall.exe
+23/02/2024  09:10    <DIR>          webalizer
+23/02/2024  09:07    <DIR>          webdav
+06/04/2021  18:38         3.368.448 xampp-control.exe
+15/03/2024  15:42             1.195 xampp-control.ini
+15/03/2024  15:42             8.429 xampp-control.log
+23/02/2024  09:07             1.084 xampp_shell.bat
+30/03/2013  19:29           118.784 xampp_start.exe
+30/03/2013  19:29           118.784 xampp_stop.exe
+              29 File(s)     10.569.660 bytes
+              24 Dir(s)  437.981.949.952 bytes free
+
+ASUS A1400@ULANW c:\xampp
+# cd mysql\bin
+
+ASUS A1400@ULANW c:\xampp\mysql\bin
+# mysql -u root -p
+Enter password:
+Welcome to the MariaDB monitor.  Commands end with ; or \g.
+Your MariaDB connection id is 8
+Server version: 10.4.32-MariaDB mariadb.org binary distribution
+
+Copyright (c) 2000, 2018, Oracle, MariaDB Corporation Ab and others.
+
+Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
+
+MariaDB [(none)]> SHOW DATABASE;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near 'DATABASE' at line 1
+MariaDB [(none)]> SHOW DATABASES;
++--------------------+
+| Database           |
++--------------------+
+| dbti08             |
+| dbtoko             |
+| information_schema |
+| mysql              |
+| performance_schema |
+| phpmyadmin         |
+| test               |
++--------------------+
+7 rows in set (0.022 sec)
+
+MariaDB [(none)]> CREATE DATABASE dbkuliah;
+Query OK, 1 row affected (0.001 sec)
+
+MariaDB [(none)]> SHOW DATABASES;
++--------------------+
+| Database           |
++--------------------+
+| dbkuliah           |
+| dbti08             |
+| dbtoko             |
+| information_schema |
+| mysql              |
+| performance_schema |
+| phpmyadmin         |
+| test               |
++--------------------+
+8 rows in set (0.001 sec)
+
+MariaDB [(none)]> USE DATABASE dbkuliah;
+ERROR 1049 (42000): Unknown database 'database'
+MariaDB [(none)]> USE dbkuliah;
+Database changed
+MariaDB [dbkuliah]> CREATE TABLE jurusan(
+    -> id int primary key auto_increment not null,
+    -> nim int not null unique,
+    -> nama varchar(30) not null,
+    -> alamat varchar(50) not null,
+    -> idjurusan int not null references jurusan(id),
+    -> foto varchar(30));
+Query OK, 0 rows affected (0.021 sec)
+
+MariaDB [dbkuliah]> DROP TABLE jurusan;
+Query OK, 0 rows affected (0.039 sec)
+
+MariaDB [dbkuliah]> DESC jurusan;
+ERROR 1146 (42S02): Table 'dbkuliah.jurusan' doesn't exist
+MariaDB [dbkuliah]> CREATE TABLE jurusan(
+    -> id int primary key auto_increment not null,
+    -> nama varchar(30) not null unique);
+Query OK, 0 rows affected (0.020 sec)
+
+MariaDB [dbkuliah]> DESC jurusan;
++-------+-------------+------+-----+---------+----------------+
+| Field | Type        | Null | Key | Default | Extra          |
++-------+-------------+------+-----+---------+----------------+
+| id    | int(11)     | NO   | PRI | NULL    | auto_increment |
+| nama  | varchar(30) | NO   | UNI | NULL    |                |
++-------+-------------+------+-----+---------+----------------+
+2 rows in set (0.013 sec)
+
+MariaDB [dbkuliah]> SHOW TABLES;
++--------------------+
+| Tables_in_dbkuliah |
++--------------------+
+| jurusan            |
++--------------------+
+1 row in set (0.001 sec)
+
+MariaDB [dbkuliah]> CREATE TABLE mahasiswa;
+ERROR 1113 (42000): A table must have at least 1 column
+MariaDB [dbkuliah]> CREATE TABLE mahasiswa(
+    -> id int primary key auto_increment not null,
+    -> nim int not null unique,
+    -> nama varchar(30) not null,
+    -> alamat varchar(50) not null,
+    -> idjurusan int not null references jurusan(id),
+    -> foto varchar(30));
+Query OK, 0 rows affected (0.021 sec)
+
+MariaDB [dbkuliah]> DESC jurusan;
++-------+-------------+------+-----+---------+----------------+
+| Field | Type        | Null | Key | Default | Extra          |
++-------+-------------+------+-----+---------+----------------+
+| id    | int(11)     | NO   | PRI | NULL    | auto_increment |
+| nama  | varchar(30) | NO   | UNI | NULL    |                |
++-------+-------------+------+-----+---------+----------------+
+2 rows in set (0.014 sec)
+
+MariaDB [dbkuliah]> DESC mahasiswa;
++-----------+-------------+------+-----+---------+----------------+
+| Field     | Type        | Null | Key | Default | Extra          |
++-----------+-------------+------+-----+---------+----------------+
+| id        | int(11)     | NO   | PRI | NULL    | auto_increment |
+| nim       | int(11)     | NO   | UNI | NULL    |                |
+| nama      | varchar(30) | NO   |     | NULL    |                |
+| alamat    | varchar(50) | NO   |     | NULL    |                |
+| idjurusan | int(11)     | NO   |     | NULL    |                |
+| foto      | varchar(30) | YES  |     | NULL    |                |
++-----------+-------------+------+-----+---------+----------------+
+6 rows in set (0.011 sec)
+
+MariaDB [dbkuliah]> SELECT * FROM jurusan;
+Empty set (0.000 sec)
+
+MariaDB [dbkuliah]> INSERT INTO jurusan (nama) VALUES
+    -> ('Teknik Informatika'),('Sistem Informasi'),('Bisnis Digital'),('Psik
+ologi'),('Sastra Inggris');
+Query OK, 5 rows affected (0.005 sec)
+Records: 5  Duplicates: 0  Warnings: 0
+
+MariaDB [dbkuliah]> DESC jurusan;
++-------+-------------+------+-----+---------+----------------+
+| Field | Type        | Null | Key | Default | Extra          |
++-------+-------------+------+-----+---------+----------------+
+| id    | int(11)     | NO   | PRI | NULL    | auto_increment |
+| nama  | varchar(30) | NO   | UNI | NULL    |                |
++-------+-------------+------+-----+---------+----------------+
+2 rows in set (0.014 sec)
+
+MariaDB [dbkuliah]> SELECT * FROM jurusan;
++----+--------------------+
+| id | nama               |
++----+--------------------+
+|  3 | Bisnis Digital     |
+|  4 | Psikologi          |
+|  5 | Sastra Inggris     |
+|  2 | Sistem Informasi   |
+|  1 | Teknik Informatika |
++----+--------------------+
+5 rows in set (0.000 sec)
+
+MariaDB [dbkuliah]> INSERT INTO mahasiswa (nim,nama,alamat,idjurusan,foto) V
+ALUES
+    ->
+    -> (0110223259,'Wulan Ramadani','Jl akses UI',1,'wulan.jpg'),
+    -> (0110223238,'Luthfiyah Syaharani','Jl Keadilan',2,'lulu.jpg'),
+    -> (0110223250,'Lee Haechan','Jl Sadar',3,'hecan.jpg'),
+    -> (0110223251,'Hwang Renjun','Jl Bahagia',4,'njun.jpg'),
+    -> (0110223252,'Lee Jeno','Jl Damai',5,'jeno.jpg');
+Query OK, 5 rows affected (0.003 sec)
+Records: 5  Duplicates: 0  Warnings: 0
+
+MariaDB [dbkuliah]> SELECT * FROM jurusan;
++----+--------------------+
+| id | nama               |
++----+--------------------+
+|  3 | Bisnis Digital     |
+|  4 | Psikologi          |
+|  5 | Sastra Inggris     |
+|  2 | Sistem Informasi   |
+|  1 | Teknik Informatika |
++----+--------------------+
+5 rows in set (0.000 sec)
+
+MariaDB [dbkuliah]> SELECT * FROM mahasiswa;
++----+-----------+---------------------+-------------+-----------+-----------+
+| id | nim       | nama                | alamat      | idjurusan | foto      |
++----+-----------+---------------------+-------------+-----------+-----------+
+|  1 | 110223259 | Wulan Ramadani      | Jl akses UI |         1 | wulan.jpg |
+|  2 | 110223238 | Luthfiyah Syaharani | Jl Keadilan |         2 | lulu.jpg  |
+|  3 | 110223250 | Lee Haechan         | Jl Sadar    |         3 | hecan.jpg |
+|  4 | 110223251 | Hwang Renjun        | Jl Bahagia  |         4 | njun.jpg  |
+|  5 | 110223252 | Lee Jeno            | Jl Damai    |         5 | jeno.jpg  |
++----+-----------+---------------------+-------------+-----------+-----------+
+5 rows in set (0.000 sec)
